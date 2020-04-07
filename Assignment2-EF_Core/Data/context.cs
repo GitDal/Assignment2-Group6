@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Assignment2_EF_Core.Data
 {
-    public class Context : DbContext
+    public class context : DbContext
     {
         // Database Sets
         public DbSet<Student> Students;
