@@ -25,6 +25,16 @@ namespace Assignment2_EF_Core.Data
             /**************/
             modelBuilder.Entity<Student>().HasKey(p => p.auId);
 
+            /**************/
+            //  Exercise  //
+            /**************/
+            modelBuilder.Entity<Exercise>().HasKey(p => new {p.Lecture, p.Number});
+
+            /****************/
+            //  Assignment  //
+            /****************/
+            modelBuilder.Entity<Assignment>().HasKey(p => p.Name);
+
 
 
 
@@ -35,6 +45,7 @@ namespace Assignment2_EF_Core.Data
             /**************/
             //  Teachers  //
             /**************/
+            modelBuilder.Entity<Teacher>().HasKey(p => p.auId);
             modelBuilder.Entity<Teacher>()
                 .HasMany<Assignment>()
                 .WithOne(t => t.Teacher)
