@@ -5,6 +5,10 @@
     <RootNamespace>Assignment2_ASP_NET</RootNamespace>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Assignment2-EF_Core\Assignment2-EF_Core.csproj" />
+  </ItemGroup>
+
 
 
 </Project>
