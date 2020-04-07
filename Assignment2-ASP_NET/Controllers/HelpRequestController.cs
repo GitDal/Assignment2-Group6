@@ -14,12 +14,12 @@ namespace Assignment2_ASP_NET.Controllers
             return View();
         }
 
-        public IActionResult All(int studentAuId)
+        public IActionResult GetForStudent(int studentAuId)
         {
 
         }
 
-        public IActionResult All(string teacherAuId, int courseId)
+        public IActionResult GetForTeacherCourse(string teacherAuId, int courseId)
         {
 
         }
