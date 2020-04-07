@@ -7,11 +7,16 @@ namespace Assignment2_EF_Core.Models
 {
     public class Exercise
     {
-        [Required]
+        
         public int Number { get; set; }
-        [Required]
         public string Lecture { get; set; }
-        [Required]
         public string HelpWhere { get; set; }
+
+        public int CourseId { get; set; }
+        public string TeacherId { get; set; }
+
+        //Navigational properties
+        public Course Course { get; set; }
+        public Teacher Teacher { get; set; }
     }
 }

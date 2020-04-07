@@ -13,5 +13,11 @@ namespace Assignment2_EF_Core.Models
         public string Firstname { get; set; }
         [Required]
         public string Lastname { get; set; }
+
+        //Navigational properties
+        public List<Exercise> Exercises { get; set; }
+        public List<StudentAssignment> Assignments { get; set; }
+        public List<StudentCourse> Courses { get; set; }
+
     }
 }

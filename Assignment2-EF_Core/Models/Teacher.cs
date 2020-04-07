@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Assignment2_EF_Core.Models
 {
-    class Teacher
+    public class Teacher
     {
         [Required]
         public string auId { get; set; }
@@ -13,5 +13,10 @@ namespace Assignment2_EF_Core.Models
         public string Firstname { get; set; }
         [Required]
         public string Lastname { get; set; }
+
+        //Navigational properties
+        public List<TeacherCourse> Courses { get; set; }
+        public List<Exercise> Exercises { get; set; }
+        public List<Assignment> Assignments { get; set; }
     }
 }

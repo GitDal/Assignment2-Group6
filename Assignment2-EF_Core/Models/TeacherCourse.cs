@@ -4,15 +4,13 @@ using System.Text;
 
 namespace Assignment2_EF_Core.Models
 {
-    public class StudentCourse
+    public class TeacherCourse
     {
-        public string StudentId { get; set; }
+        public string TeacherId { get; set; }
         public int CourseId { get; set; }
-        public string Semester { get; set; }
-        public bool Active { get; set; }
 
         //Navigational properties
-        public Student Student { get; set; }
+        public Teacher Teacher { get; set; }
         public Course Course { get; set; }
     }
 }
