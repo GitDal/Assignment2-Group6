@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Assignment2_ASP_NET.Database.Data;
+using Assignment2_ASP_NET.Database.Repository;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -30,6 +31,8 @@ namespace Assignment2_ASP_NET
             // Add DbContext "Context" to project using Local Db
             services.AddDbContext<Context>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("LocalDbConnection")));
+
+            services.AddScoped<IUnitOfWork, UnitOfWork>(); // Dependency Injection
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
