@@ -2,22 +2,30 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Assignment2_EF_Core.Models;
+using Assignment2_ASP_NET.Database.Models;
+using Assignment2_ASP_NET.Database.Repository;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Assignment2_ASP_NET.Controllers
 {
     public class CreateController : Controller
     {
-        //Repository
+        //UnitOfWork
+        private readonly IUnitOfWork _unitOfWork;
+
+        public CreateController(IUnitOfWork unitOfWork)
+        {
+            _unitOfWork = unitOfWork;
+        }
 
         // View that redirects to all creation-forms, to create specific entities
+        // GET: /Create/
         public IActionResult Index()
         {
             return View();
         }
 
-        //Create Course
+        // GET: /Create/Course
         public IActionResult Course()
         {
             var course = new Course();
@@ -28,10 +36,19 @@ namespace Assignment2_ASP_NET.Controllers
         [HttpPost]
         public async Task<IActionResult> Course(Course course)
         {
+            if (ModelState.IsValid)
+            {
+                _unitOfWork.CourseRepository.Add(course);
+                return View("Index");
+            }
+            else
+            {
+                return View();
+            }
 
         }
 
-        //Create Student
+        // GET: /Create/Student
         public IActionResult Student()
         {
             var student = new Student();
@@ -40,9 +57,17 @@ namespace Assignment2_ASP_NET.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Student(Student student)
+        public IActionResult Student(Student student)
         {
-            
+            if (ModelState.IsValid)
+            {
+                _unitOfWork.StudentRepository.Add(student);
+                return View("Index");
+            }
+            else
+            {
+                return View();
+            }
         }
 
         //Resten af create aktionerne

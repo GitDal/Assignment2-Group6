@@ -2,14 +2,22 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Assignment2_EF_Core.Models;
+using Assignment2_ASP_NET.Database.Models;
+using Assignment2_ASP_NET.Database.Repository;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Assignment2_ASP_NET.Controllers
 {
     public class HelpRequestController : Controller
     {
-        public IActionResult Overview()
+        private readonly IUnitOfWork _unitOfWork;
+
+        public HelpRequestController(IUnitOfWork unitOfWork)
+        {
+            _unitOfWork = unitOfWork;
+        }
+
+        public IActionResult Index()
         {
             return View();
         }
