@@ -26,7 +26,11 @@ namespace Assignment2_ASP_NET.Database.Data
             /**************/
             //  Students  //
             /**************/
-            modelBuilder.Entity<Student>().HasKey(p => p.auId);
+            modelBuilder.Entity<Student>().HasKey(p => p.AuId);
+            modelBuilder.Entity<Student>()
+                .HasMany<Exercise>()
+                .WithOne(s => s.Student)
+                .HasForeignKey(f => f.StudentId);
 
             /**************/
             //  Exercise  //
@@ -38,17 +42,10 @@ namespace Assignment2_ASP_NET.Database.Data
             /****************/
             modelBuilder.Entity<Assignment>().HasKey(p => p.Name);
 
-
-
-
-
-
-
-
             /**************/
             //  Teachers  //
             /**************/
-            modelBuilder.Entity<Teacher>().HasKey(p => p.auId);
+            modelBuilder.Entity<Teacher>().HasKey(p => p.AuId);
             modelBuilder.Entity<Teacher>()
                 .HasMany<Assignment>()
                 .WithOne(t => t.Teacher)
@@ -77,11 +74,11 @@ namespace Assignment2_ASP_NET.Database.Data
             modelBuilder.Entity<TeacherCourse>()
                 .HasOne<Teacher>()
                 .WithMany(c => c.Courses)
-                .HasForeignKey(f => f.CourseId);
+                .HasForeignKey(f => f.TeacherId);
             modelBuilder.Entity<TeacherCourse>()
                 .HasOne<Course>()
                 .WithMany(t => t.Teachers)
-                .HasForeignKey(f => f.TeacherId);
+                .HasForeignKey(f => f.CourseId);
 
             /********************/
             //  StudentCourses  //
@@ -94,6 +91,18 @@ namespace Assignment2_ASP_NET.Database.Data
                 .HasOne<Course>()
                 .WithMany(s => s.Students)
                 .HasForeignKey(f => f.CourseId);
+
+            /************************/
+            //  StudentAssignments  //
+            /************************/
+            modelBuilder.Entity<StudentAssignment>()
+                .HasOne<Student>()
+                .WithMany(a => a.Assignments)
+                .HasForeignKey(f => f.StudentId);
+            modelBuilder.Entity<StudentAssignment>()
+                .HasOne<Assignment>()
+                .WithMany(s => s.Students)
+                .HasForeignKey(f => f.AssignmentName);
         }
     }
 }

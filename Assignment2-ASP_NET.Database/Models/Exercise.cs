@@ -14,8 +14,10 @@ namespace Assignment2_ASP_NET.Database.Models
 
         public int CourseId { get; set; }
         public string TeacherId { get; set; }
+        public string StudentId { get; set; }
 
         //Navigational properties
+        public Student Student { get; set; }
         public Course Course { get; set; }
         public Teacher Teacher { get; set; }
     }
