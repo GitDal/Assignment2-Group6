@@ -5,8 +5,6 @@ VisualStudioVersion = 16.0.29911.84
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Assignment2-ASP_NET", "Assignment2-ASP_NET\Assignment2-ASP_NET.csproj", "{DF5BD9DF-9810-4DED-9042-74F895C2DBA7}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Assignment2-EF_Core", "Assignment2-EF_Core\Assignment2-EF_Core.csproj", "{D35DC928-3AD2-4A42-983F-BC5C849EBB84}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Assignment2-ASP_NET.Database", "Assignment2-ASP_NET.Database\Assignment2-ASP_NET.Database.csproj", "{0CFBC180-BEBE-4037-BA6B-BB51ED675AA5}"
 EndProject
 Global
@@ -19,10 +17,6 @@ Global
 		{DF5BD9DF-9810-4DED-9042-74F895C2DBA7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DF5BD9DF-9810-4DED-9042-74F895C2DBA7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DF5BD9DF-9810-4DED-9042-74F895C2DBA7}.Release|Any CPU.Build.0 = Release|Any CPU
-		{D35DC928-3AD2-4A42-983F-BC5C849EBB84}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D35DC928-3AD2-4A42-983F-BC5C849EBB84}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D35DC928-3AD2-4A42-983F-BC5C849EBB84}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D35DC928-3AD2-4A42-983F-BC5C849EBB84}.Release|Any CPU.Build.0 = Release|Any CPU
 		{0CFBC180-BEBE-4037-BA6B-BB51ED675AA5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{0CFBC180-BEBE-4037-BA6B-BB51ED675AA5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0CFBC180-BEBE-4037-BA6B-BB51ED675AA5}.Release|Any CPU.ActiveCfg = Release|Any CPU

@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Assignment2_ASP_NET.Database.Models;
 using Assignment2_ASP_NET.Database.Repository;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace Assignment2_ASP_NET.Controllers
 {
@@ -34,12 +35,21 @@ namespace Assignment2_ASP_NET.Controllers
         }
 
         [HttpPost]
-        public Task<IActionResult> Course(Course course)
+        public IActionResult Course(Course course)
         {
             if (ModelState.IsValid)
             {
-                _unitOfWork.CourseRepository.Add(course);
-                return View("Index");
+                try
+                {
+                    _unitOfWork.CourseRepository.Add(course);
+                    _unitOfWork.Save();
+                }
+                catch (DbUpdateException ex)
+                {
+                    return View();
+                }
+
+                return View("Index"); //Success
             }
             else
             {
