@@ -1,0 +1,57 @@
+﻿
+@{
+    ViewData["Title"] = "Help Requests - Views";
+}
+
+<h1>Views: Help Requests</h1>
+<h2>Choose the desired view...</h2>
+
+<div>
+    <h3><b>Help Requests - Student</b></h3>
+    <form asp-action="GetForStudent" method="get">
+        <table>
+            <tr>
+                <td>Enter Au-Id: </td>
+                <td><input type="text" name="studentAuId" /></td>
+            </tr>
+            <tr>
+                <td colspan="2"><input type="submit" value="Submit" /></td>
+            </tr>
+        </table>
+    </form>
+
+    <h3><b>Help Requests - Teacher, Course</b></h3>
+    <form asp-action="GetForTeacherCourse" method="get">
+        <table>
+            <tr>
+                <td>Enter Au-Id: </td>
+                <td><input type="text" name="teacherAuId" /></td>
+            </tr>
+            <tr>
+                <td>Enter Course-Id: </td>
+                <td><input type="text" name="courseId" /></td>
+            </tr>
+            <tr>
+                <td colspan="2"><input type="submit" value="Submit" /></td>
+            </tr>
+        </table>
+    </form>
+
+    <h3><b>Help Request Statistics - Course</b></h3>
+    <form asp-action="Statistics" method="get">
+        <table>
+            <tr>
+                <td>Enter Course-Id: </td>
+                <td><input type="text" name="courseId" /></td>
+            </tr>
+            <tr>
+                <td colspan="2"><input type="submit" value="Submit" /></td>
+            </tr>
+        </table>
+    </form>
+</div>
+
+
+
+
+

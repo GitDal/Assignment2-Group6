@@ -13,10 +13,6 @@
     <ProjectReference Include="..\Assignment2-ASP_NET.Database\Assignment2-ASP_NET.Database.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Views\HelpRequest\" />
-  </ItemGroup>
-
 
 
 </Project>

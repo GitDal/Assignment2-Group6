@@ -31,13 +31,12 @@ namespace Assignment2_ASP_NET.Controllers
             // Get student
             var student = _unitOfWork.StudentRepository.Get(studentAuId);
             
-            // Help requests for student
-            vm.Exercises = _unitOfWork.ExerciseRepository.Find(e => e.);
+            // Help requests (exercises and assignments) for student
+            vm.Exercises = _unitOfWork.ExerciseRepository.Find(e => e.StudentId == studentAuId);
             vm.Assignments =
-                _unitOfWork.AssignmentRepository.Find(a =>
-                    a.StudentAssignments.Find(sa => sa.StudentId.Equals(studentAuId)));
+                _unitOfWork.AssignmentRepository.Find(a => a.Students.Exists(sa => sa.StudentId == studentAuId));
 
-            return View()
+            return View(vm);
         }
 
         public IActionResult GetForTeacherCourse(string teacherAuId, int courseId)
