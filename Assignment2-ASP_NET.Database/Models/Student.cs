@@ -8,7 +8,7 @@ namespace Assignment2_ASP_NET.Database.Models
     public class Student
     {
         [Required]
-        public string auId { get; set; }
+        public string AuId { get; set; }
         [Required]
         public string Firstname { get; set; }
         [Required]
