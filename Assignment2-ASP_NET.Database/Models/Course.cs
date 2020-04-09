@@ -8,7 +8,8 @@ namespace Assignment2_ASP_NET.Database.Models
     public class Course
     {
         [Required]
-        public int CourseId { get; set; }
+        [Display(Name = "Course Tag")]
+        public string CourseId { get; set; }
         [Required]
         public string Name { get; set; }
 

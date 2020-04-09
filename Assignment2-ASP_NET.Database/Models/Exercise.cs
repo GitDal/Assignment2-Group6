@@ -12,7 +12,7 @@ namespace Assignment2_ASP_NET.Database.Models
         public string Lecture { get; set; }
         public string HelpWhere { get; set; }
 
-        public int CourseId { get; set; }
+        public string CourseId { get; set; }
         public string TeacherId { get; set; }
         public string StudentId { get; set; }
 

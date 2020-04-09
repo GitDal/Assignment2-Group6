@@ -7,7 +7,7 @@ namespace Assignment2_ASP_NET.Database.Models
     public class StudentCourse
     {
         public string StudentId { get; set; }
-        public int CourseId { get; set; }
+        public string CourseId { get; set; }
         public string Semester { get; set; }
         public bool Active { get; set; }
 

@@ -29,7 +29,7 @@ namespace Assignment2_ASP_NET
             services.AddControllersWithViews();
 
             // Add DbContext "Context" to project using Local Db
-            services.AddDbContext<Context>(options =>
+            services.AddDbContext<DbContext, Context>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("LocalDbConnection")));
 
             services.AddScoped<IUnitOfWork, UnitOfWork>(); // Dependency Injection

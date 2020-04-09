@@ -39,7 +39,7 @@ namespace Assignment2_ASP_NET.Controllers
             return View(vm);
         }
 
-        public IActionResult GetForTeacherCourse(string teacherAuId, int courseId)
+        public IActionResult GetForTeacherCourse(string teacherAuId, string courseId)
         {
             var exerciseHelpRequests = _unitOfWork.ExerciseRepository.Find(p =>
                 (p.TeacherId == teacherAuId) && (p.CourseId == courseId));

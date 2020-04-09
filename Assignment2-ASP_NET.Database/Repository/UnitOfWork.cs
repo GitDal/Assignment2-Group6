@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using Assignment2_ASP_NET.Database.Data;
 using Assignment2_ASP_NET.Database.Models;
 using Microsoft.EntityFrameworkCore;
 

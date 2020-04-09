@@ -67,10 +67,11 @@ namespace Assignment2_ASP_NET.Database.Data
                 .HasMany<Exercise>()
                 .WithOne(c => c.Course)
                 .HasForeignKey(f => f.CourseId);
-            
+
             /********************/
             //  TeacherCourses  //
             /********************/
+            modelBuilder.Entity<TeacherCourse>().HasKey(tc => new { tc.TeacherId, tc.CourseId });
             modelBuilder.Entity<TeacherCourse>()
                 .HasOne<Teacher>()
                 .WithMany(c => c.Courses)
@@ -83,6 +84,7 @@ namespace Assignment2_ASP_NET.Database.Data
             /********************/
             //  StudentCourses  //
             /********************/
+            modelBuilder.Entity<StudentCourse>().HasKey(sc => new { sc.StudentId, sc.CourseId });
             modelBuilder.Entity<StudentCourse>()
                 .HasOne<Student>()
                 .WithMany(c => c.Courses)
@@ -95,6 +97,7 @@ namespace Assignment2_ASP_NET.Database.Data
             /************************/
             //  StudentAssignments  //
             /************************/
+            modelBuilder.Entity<StudentAssignment>().HasKey(p => new {p.StudentId, p.AssignmentName});
             modelBuilder.Entity<StudentAssignment>()
                 .HasOne<Student>()
                 .WithMany(a => a.Assignments)
