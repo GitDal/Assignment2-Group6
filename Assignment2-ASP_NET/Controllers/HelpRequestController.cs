@@ -6,6 +6,7 @@ using Assignment2_ASP_NET.Database.Models;
 using Assignment2_ASP_NET.Database.Repository;
 using Assignment2_ASP_NET.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
 
 namespace Assignment2_ASP_NET.Controllers
 {
@@ -40,9 +41,13 @@ namespace Assignment2_ASP_NET.Controllers
 
         public IActionResult GetForTeacherCourse(string teacherAuId, int courseId)
         {
+            var exerciseHelpRequests = _unitOfWork.ExerciseRepository.Find(p =>
+                (p.TeacherId == teacherAuId) && (p.CourseId == courseId));
 
+            var assignmentHelpRequests = _unitOfWork.AssignmentRepository.Find(p =>
+                (p.TeacherId == teacherAuId) && (p.CourseId == courseId));
 
-            return View();
+            return View(new HelpRequestsViewModel(exerciseHelpRequests, assignmentHelpRequests));
         }
 
         public IActionResult Statistics()
