@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Assignment2-ASP_NET", "Assi
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Assignment2-EF_Core", "Assignment2-EF_Core\Assignment2-EF_Core.csproj", "{D35DC928-3AD2-4A42-983F-BC5C849EBB84}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assignment2-ASP_NET.Database", "Assignment2-ASP_NET.Database\Assignment2-ASP_NET.Database.csproj", "{0CFBC180-BEBE-4037-BA6B-BB51ED675AA5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Assignment2-ASP_NET.Database", "Assignment2-ASP_NET.Database\Assignment2-ASP_NET.Database.csproj", "{0CFBC180-BEBE-4037-BA6B-BB51ED675AA5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
