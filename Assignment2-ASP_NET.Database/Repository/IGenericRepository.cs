@@ -9,7 +9,7 @@ namespace Assignment2_ASP_NET.Database.Repository
     {
         public void Add(TEntity entity);
         public void AddRange(IEnumerable<TEntity> entities);
-        public TEntity Get(int id);
+        public TEntity Get(params object[] ids);
         public IEnumerable<TEntity> GetAll();
         public IEnumerable<TEntity> Find(Func<TEntity, bool> predicate);
         public void Update(TEntity entity);

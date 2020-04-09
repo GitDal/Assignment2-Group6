@@ -25,9 +25,9 @@ namespace Assignment2_ASP_NET.Database.Repository
             _context.Set<TEntity>().AddRange(entities);
         }
 
-        public TEntity Get(int id)
+        public TEntity Get(params object[] ids)
         {
-            return _context.Set<TEntity>().Find(id);
+            return _context.Set<TEntity>().Find(ids);
         }
 
         public IEnumerable<TEntity> GetAll()

@@ -34,7 +34,7 @@ namespace Assignment2_ASP_NET.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Course(Course course)
+        public Task<IActionResult> Course(Course course)
         {
             if (ModelState.IsValid)
             {
