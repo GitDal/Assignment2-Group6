@@ -35,19 +35,13 @@ namespace Assignment2_ASP_NET.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public IActionResult Course(Course course)
         {
             if (ModelState.IsValid)
             {
-                try
-                {
-                    _unitOfWork.CourseRepository.Add(course);
-                    _unitOfWork.Save();
-                }
-                catch (DbUpdateException ex)
-                {
-                    return View();
-                }
+                _unitOfWork.CourseRepository.Add(course);
+                _unitOfWork.Save();
 
                 return View("Index"); //Success
             }

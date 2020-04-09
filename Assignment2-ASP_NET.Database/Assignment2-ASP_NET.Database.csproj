@@ -6,11 +6,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Migrations\20200409174037_MadeCourseIdString.cs" />
-    <Compile Remove="Migrations\20200409174037_MadeCourseIdString.Designer.cs" />
-  </ItemGroup>
-
-  <ItemGroup>
     <Folder Include="Data\" />
   </ItemGroup>
 

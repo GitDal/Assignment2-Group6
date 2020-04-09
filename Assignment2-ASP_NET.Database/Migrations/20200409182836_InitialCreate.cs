@@ -10,8 +10,7 @@ namespace Assignment2_ASP_NET.Database.Migrations
                 name: "Course",
                 columns: table => new
                 {
-                    CourseId = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    CourseId = table.Column<string>(nullable: false),
                     Name = table.Column<string>(nullable: false)
                 },
                 constraints: table =>
@@ -50,11 +49,11 @@ namespace Assignment2_ASP_NET.Database.Migrations
                 columns: table => new
                 {
                     StudentId = table.Column<string>(nullable: false),
-                    CourseId = table.Column<int>(nullable: false),
+                    CourseId = table.Column<string>(nullable: false),
                     Semester = table.Column<string>(nullable: true),
                     Active = table.Column<bool>(nullable: false),
                     StudentAuId = table.Column<string>(nullable: true),
-                    CourseId1 = table.Column<int>(nullable: true)
+                    CourseId1 = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -91,9 +90,9 @@ namespace Assignment2_ASP_NET.Database.Migrations
                 {
                     Name = table.Column<string>(nullable: false),
                     HelpWhere = table.Column<string>(nullable: true),
-                    CourseId = table.Column<int>(nullable: false),
+                    CourseId = table.Column<string>(nullable: true),
                     TeacherId = table.Column<string>(nullable: true),
-                    CourseId1 = table.Column<int>(nullable: true),
+                    CourseId1 = table.Column<string>(nullable: true),
                     TeacherAuId = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
@@ -104,7 +103,7 @@ namespace Assignment2_ASP_NET.Database.Migrations
                         column: x => x.CourseId,
                         principalTable: "Course",
                         principalColumn: "CourseId",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_Assignment_Course_CourseId1",
                         column: x => x.CourseId1,
@@ -132,10 +131,10 @@ namespace Assignment2_ASP_NET.Database.Migrations
                     Number = table.Column<int>(nullable: false),
                     Lecture = table.Column<string>(nullable: false),
                     HelpWhere = table.Column<string>(nullable: true),
-                    CourseId = table.Column<int>(nullable: false),
+                    CourseId = table.Column<string>(nullable: true),
                     TeacherId = table.Column<string>(nullable: true),
                     StudentId = table.Column<string>(nullable: true),
-                    CourseId1 = table.Column<int>(nullable: true),
+                    CourseId1 = table.Column<string>(nullable: true),
                     StudentAuId = table.Column<string>(nullable: true),
                     TeacherAuId = table.Column<string>(nullable: true)
                 },
@@ -147,7 +146,7 @@ namespace Assignment2_ASP_NET.Database.Migrations
                         column: x => x.CourseId,
                         principalTable: "Course",
                         principalColumn: "CourseId",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_Exercise_Course_CourseId1",
                         column: x => x.CourseId1,
@@ -185,9 +184,9 @@ namespace Assignment2_ASP_NET.Database.Migrations
                 columns: table => new
                 {
                     TeacherId = table.Column<string>(nullable: false),
-                    CourseId = table.Column<int>(nullable: false),
+                    CourseId = table.Column<string>(nullable: false),
                     TeacherAuId = table.Column<string>(nullable: true),
-                    CourseId1 = table.Column<int>(nullable: true)
+                    CourseId1 = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
