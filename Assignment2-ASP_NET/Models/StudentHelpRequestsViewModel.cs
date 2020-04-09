@@ -6,10 +6,10 @@ using Assignment2_ASP_NET.Database.Models;
 
 namespace Assignment2_ASP_NET.Models
 {
-    public class HelpRequestsViewModel
+    public class StudentHelpRequestsViewModel
     {
-        public HelpRequestsViewModel() { }
-        public HelpRequestsViewModel(IEnumerable<Exercise> exercises, IEnumerable<Assignment> assignments)
+        public StudentHelpRequestsViewModel() { }
+        public StudentHelpRequestsViewModel(IEnumerable<Exercise> exercises, IEnumerable<Assignment> assignments)
         {
             Exercises = exercises;
             Assignments = assignments;

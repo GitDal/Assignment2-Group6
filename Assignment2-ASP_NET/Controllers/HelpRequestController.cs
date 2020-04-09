@@ -26,7 +26,7 @@ namespace Assignment2_ASP_NET.Controllers
 
         public IActionResult GetForStudent(string studentAuId)
         {
-            var vm = new HelpRequestsViewModel();
+            var vm = new StudentHelpRequestsViewModel();
 
             // Get student
             var student = _unitOfWork.StudentRepository.Get(studentAuId);
@@ -48,7 +48,10 @@ namespace Assignment2_ASP_NET.Controllers
             var assignmentHelpRequests = _unitOfWork.AssignmentRepository.Find(p =>
                 (p.TeacherId == teacherAuId) && (p.CourseId == courseId));
 
-            return View(new HelpRequestsViewModel(exerciseHelpRequests, assignmentHelpRequests));
+            var teacher = _unitOfWork.TeacherRepository.Get(teacherAuId);
+            var course = _unitOfWork.CourseRepository.Get(courseId);
+            
+            return View(new TeacherCourseHelpRequestViewModel(exerciseHelpRequests, assignmentHelpRequests, teacher, course));
         }
 
         public IActionResult Statistics()
