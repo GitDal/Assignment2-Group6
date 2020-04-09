@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Microsoft.EntityFrameworkCore;
+using Assignment2_ASP_NET.Database.Data;
 
 namespace Assignment2_ASP_NET.Database.Repository
 {

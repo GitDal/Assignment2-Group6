@@ -26,38 +26,56 @@ namespace Assignment2_ASP_NET.Controllers
 
         public IActionResult GetForStudent(string studentAuId)
         {
-            var vm = new StudentHelpRequestsViewModel();
-
-            // Get student
             var student = _unitOfWork.StudentRepository.Get(studentAuId);
-            
-            // Help requests (exercises and assignments) for student
-            vm.Exercises = _unitOfWork.ExerciseRepository.Find(e => e.StudentId == studentAuId);
-            vm.Assignments =
-                _unitOfWork.AssignmentRepository.Find(a => a.Students.Exists(sa => sa.StudentId == studentAuId));
 
-            return View(vm);
+            if (student != null)
+            {
+                var vm = new StudentHelpRequestsViewModel();
+
+                // Get student
+                vm.Student = student;
+
+                // Help requests (exercises and assignments) for student
+                vm.Exercises = _unitOfWork.ExerciseRepository.Find(e => e.StudentId == studentAuId);
+                vm.Assignments =
+                    _unitOfWork.AssignmentRepository.Find(a => a.Students.Exists(sa => sa.StudentId == studentAuId));
+
+                return View(vm); //Success
+            }
+
+            return View("Index"); //Error
+
         }
 
         public IActionResult GetForTeacherCourse(string teacherAuId, string courseId)
         {
-            var exerciseHelpRequests = _unitOfWork.ExerciseRepository.Find(p =>
-                (p.TeacherId == teacherAuId) && (p.CourseId == courseId));
-
-            var assignmentHelpRequests = _unitOfWork.AssignmentRepository.Find(p =>
-                (p.TeacherId == teacherAuId) && (p.CourseId == courseId));
-
             var teacher = _unitOfWork.TeacherRepository.Get(teacherAuId);
             var course = _unitOfWork.CourseRepository.Get(courseId);
-            
-            return View(new TeacherCourseHelpRequestViewModel(exerciseHelpRequests, assignmentHelpRequests, teacher, course));
+
+            if (teacher != null && course != null)
+            {
+                var exerciseHelpRequests = _unitOfWork.ExerciseRepository.Find(p =>
+                    (p.TeacherId == teacherAuId) && (p.CourseId == courseId));
+
+                var assignmentHelpRequests = _unitOfWork.AssignmentRepository.Find(p =>
+                    (p.TeacherId == teacherAuId) && (p.CourseId == courseId));
+
+                return View(new TeacherCourseHelpRequestViewModel(exerciseHelpRequests, assignmentHelpRequests, teacher, course)); //Success
+            }
+
+            return View("Index"); // Error
         }
 
-        public IActionResult Statistics()
+        public IActionResult Statistics(string courseId)
         {
+            var course = _unitOfWork.CourseRepository.Get(courseId);
 
+            if (course != null)
+            {
+                return View();
+            }
 
-            return View();
+            return View("Index");
         }
 
 

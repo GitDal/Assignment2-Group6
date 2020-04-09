@@ -7,11 +7,11 @@ namespace Assignment2_ASP_NET.Database.Data
     public class Context : DbContext
     {
         // Database Sets
-        public DbSet<Student> Students;
-        public DbSet<Teacher> Teachers;
-        public DbSet<Course> Courses;
-        public DbSet<Exercise> Exercises;
-        public DbSet<Assignment> Assignments;
+        public DbSet<Student> Students { get; set; }
+        public DbSet<Teacher> Teachers { get; set; }
+        public DbSet<Course> Courses { get; set; }
+        public DbSet<Exercise> Exercises { get; set; }
+        public DbSet<Assignment> Assignments { get; set; }
 
         public Context(DbContextOptions<Context> options) : base(options)
         { }

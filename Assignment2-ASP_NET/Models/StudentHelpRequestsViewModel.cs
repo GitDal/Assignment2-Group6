@@ -15,6 +15,7 @@ namespace Assignment2_ASP_NET.Models
             Assignments = assignments;
         }
 
+        public Student Student { get; set; }
         public IEnumerable<Exercise> Exercises { get; set; }
         public IEnumerable<Assignment> Assignments { get; set; }
     }
