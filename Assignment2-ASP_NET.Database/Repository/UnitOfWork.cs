@@ -15,6 +15,8 @@ namespace Assignment2_ASP_NET.Database.Repository
         public IGenericRepository<Teacher> TeacherRepository { get; }
         public IGenericRepository<Assignment> AssignmentRepository { get; }
         public IGenericRepository<Exercise> ExerciseRepository { get; }
+        public IGenericRepository<StudentCourse> StudentCourseRepository { get; }
+
 
         public UnitOfWork(DbContext context)
         {
@@ -25,6 +27,7 @@ namespace Assignment2_ASP_NET.Database.Repository
             TeacherRepository = new GenericRepository<Teacher>(context);
             AssignmentRepository = new GenericRepository<Assignment>(context);
             ExerciseRepository = new GenericRepository<Exercise>(context);
+            StudentCourseRepository = new GenericRepository<StudentCourse>(context);
         }
 
         public void Save()

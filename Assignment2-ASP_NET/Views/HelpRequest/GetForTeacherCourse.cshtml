@@ -6,17 +6,39 @@
 <h3>Assignment Help Requests</h3>
 <table>
     <thead>
-    <tr>
-        <td>Assignment Name</td>
-        <td></td>
-    </tr>
+        <tr>
+            <td>Assignment Name</td>
+            <td>Where to Help</td>
+        </tr>
     </thead>
     <tbody>
-    @foreach (var assignment in Model.Assignments)
-    {
+        @foreach (var assignment in Model.Assignments)
+        {
+            <tr>
+                <td>@assignment.Name</td>
+                <td>@assignment.HelpWhere</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<h3>Exercise Help Requests</h3>
+<table>
+    <thead>
         <tr>
-            <td>@assignment.Name</td>
+            <td>Lecture</td>
+            <td>Exercise Number</td>
+            <td>Where to Help</td>
         </tr>
-    }
+    </thead>
+    <tbody>
+        @foreach (var exercise in Model.Exercises)
+        {
+        <tr>
+            <td>@exercise.Lecture</td>
+            <td>@exercise.Number</td>
+            <td>@exercise.HelpWhere</td>
+        </tr>
+        }
     </tbody>
 </table>

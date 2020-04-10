@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Assignment2_ASP_NET.Database.Models;
 using Assignment2_ASP_NET.Database.Repository;
+using Assignment2_ASP_NET.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -30,6 +31,8 @@ namespace Assignment2_ASP_NET.Controllers
         // GET: /Create/Course
         public IActionResult Course()
         {
+            //_unitOfWork.CourseRepository.Add(new Course() { CourseId = "GUI", Name = "GUI programming" });
+            //_unitOfWork.Save();
             var course = new Course();
 
             return View(course);
@@ -57,17 +60,47 @@ namespace Assignment2_ASP_NET.Controllers
         public IActionResult Student()
         {
             var student = new Student();
+            var courses = _unitOfWork.CourseRepository.GetAll();
 
-            return View(student);
+            var studentViewModel = new StudentViewModel();
+
+            studentViewModel.Student = student;
+
+            foreach (var course in courses)
+            {
+                studentViewModel.Courses.Add(new CourseSignUp()
+                {
+                    CourseTag = course.CourseId,
+                    IsSignedUp = false
+                });
+            }
+
+
+            return View(studentViewModel);
         }
 
+        
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Student(Student student)
+        public IActionResult Student(StudentViewModel studentViewModel)
         {
             if (ModelState.IsValid)
             {
-                _unitOfWork.StudentRepository.Add(student);
+
+                _unitOfWork.StudentRepository.Add(studentViewModel.Student);
+                foreach (var c in studentViewModel.Courses)
+                {
+                    if (c.IsSignedUp)
+                    {
+                        _unitOfWork.StudentCourseRepository.Add(new StudentCourse()
+                        {
+                            Active = true,
+                            CourseId = c.CourseTag,
+                            Semester = studentViewModel.Semester,
+                            StudentId = studentViewModel.Student.AuId
+                        });
+                    }
+                }
                 _unitOfWork.Save();
                 return View("Index");
             }
@@ -76,6 +109,7 @@ namespace Assignment2_ASP_NET.Controllers
                 return View();
             }
         }
+        
 
         // GET: /Create/Teacher
         public IActionResult Teacher()
