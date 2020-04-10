@@ -37,8 +37,17 @@ namespace Assignment2_ASP_NET.Controllers
 
                 // Help requests (exercises and assignments) for student
                 vm.Exercises = _unitOfWork.ExerciseRepository.Find(e => e.StudentId == studentAuId);
-                vm.Assignments =
-                    _unitOfWork.AssignmentRepository.Find(a => a.Students.Exists(sa => sa.StudentId == studentAuId));
+
+                var studentAssignments = _unitOfWork.StudentAssignmentRepository.Find(sa => sa.StudentId == studentAuId);
+
+                List<Assignment> assignments = new List<Assignment>();
+                
+                foreach(var studentAssignment in studentAssignments)
+                {
+                    assignments.Add(_unitOfWork.AssignmentRepository.Get(studentAssignment.AssignmentName));
+                }
+
+                vm.Assignments = assignments;
 
                 return View(vm); //Success
             }

@@ -10,6 +10,9 @@ namespace Assignment2_ASP_NET.Models
 {
     public class AssignmentViewModel
     {
+        public AssignmentViewModel()
+        {
+        }
         public AssignmentViewModel(IEnumerable<Course> courses, IEnumerable<Teacher> teachers, IEnumerable<Student> students)
         {
             /* Populate lists */
