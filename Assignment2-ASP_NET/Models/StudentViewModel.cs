@@ -10,31 +10,31 @@ namespace Assignment2_ASP_NET.Models
     {
         public StudentViewModel()
         {
-            Courses = new List<CourseSignUp>();
+            Courses = new List<AttendingCourse>();
         }
 
         public StudentViewModel(Student student, IEnumerable<Course> courses)
         {
             Student = student;
-            Courses = new List<CourseSignUp>();
+            Courses = new List<AttendingCourse>();
             foreach (var course in courses)
             {
-                Courses.Add(new CourseSignUp()
+                Courses.Add(new AttendingCourse()
                 {
                     CourseTag = course.CourseId,
-                    IsSignedUp = false
+                    IsAttending = false
                 });
             }
         }
 
         public Student Student { get; set; }
         public string Semester { get; set; }
-        public List<CourseSignUp> Courses { get; set; }
+        public List<AttendingCourse> Courses { get; set; }
     }
 
-    public class CourseSignUp
+    public class AttendingCourse
     {
         public string CourseTag { get; set; }
-        public bool IsSignedUp { get; set; }
+        public bool IsAttending { get; set; }
     }
 }
