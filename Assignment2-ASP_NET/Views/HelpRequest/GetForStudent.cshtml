@@ -1,0 +1,89 @@
+﻿@model Assignment2_ASP_NET.Models.StudentHelpRequestsViewModel
+
+@{
+    ViewData["Title"] = "GetForStudent";
+    var exercises = Model.Exercises;
+    var assignments = Model.Assignments;
+    var student = Model.Student;
+}
+
+<h1>Help Requests for Student</h1>
+
+@* Student Info *@
+<br />
+<h6>Student:</h6>
+<ul>
+    <li><span>@Html.DisplayName(nameof(student.AuId))</span><strong>@student.AuId</strong></li>
+    <li><span>@Html.DisplayName(nameof(student.Firstname))</span><strong>@student.Firstname</strong></li>
+    <li><span>@Html.DisplayName(nameof(student.Lastname))</span><strong>@student.Lastname</strong></li>
+</ul>
+
+@* Exercises *@
+<br />
+<h6>Exercise-Help-Requests</h6>
+<table class="table">
+    <thead>
+        <tr>
+            <th>@Html.DisplayNameFor(m => m.Exercises.GetEnumerator().Current.Number)</th>
+            <th>@Html.DisplayNameFor(m => m.Exercises.GetEnumerator().Current.Lecture)</th>
+            <th>@Html.DisplayNameFor(m => m.Exercises.GetEnumerator().Current.HelpWhere)</th>
+            <th>@Html.DisplayNameFor(m => m.Exercises.GetEnumerator().Current.CourseId)</th>
+            <th>@Html.DisplayNameFor(m => m.Exercises.GetEnumerator().Current.TeacherId)</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var exercise in exercises)
+        {
+            <tr>
+                <td>
+                    @exercise.Number
+                </td>
+                <td>
+                    @exercise.Lecture
+                </td>
+                <td>
+                    @exercise.HelpWhere
+                </td>
+                <td>
+                    @exercise.CourseId
+                </td>
+                <td>
+                    @exercise.TeacherId
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@* Assignments *@
+<br />
+<h6>Assignment-Help-Requests</h6>
+<table class="table">
+    <thead>
+        <tr>
+            <th>@Html.DisplayNameFor(m => m.Assignments.GetEnumerator().Current.Name)</th>
+            <th>@Html.DisplayNameFor(m => m.Exercises.GetEnumerator().Current.HelpWhere)</th>
+            <th>@Html.DisplayNameFor(m => m.Exercises.GetEnumerator().Current.CourseId)</th>
+            <th>@Html.DisplayNameFor(m => m.Exercises.GetEnumerator().Current.TeacherId)</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var assignment in assignments)
+        {
+            <tr>
+                <td>
+                    @assignment.Name
+                </td>
+                <td>
+                    @assignment.HelpWhere
+                </td>
+                <td>
+                    @assignment.CourseId
+                </td>
+                <td>
+                    @assignment.TeacherId
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

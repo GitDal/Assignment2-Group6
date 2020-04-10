@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Assignment2_ASP_NET.Database.Models;
 using Assignment2_ASP_NET.Database.Repository;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 
 namespace Assignment2_ASP_NET.Controllers
@@ -47,7 +48,7 @@ namespace Assignment2_ASP_NET.Controllers
             }
             else
             {
-                return View();
+                return View(); //Fail
             }
 
         }
@@ -61,11 +62,13 @@ namespace Assignment2_ASP_NET.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public IActionResult Student(Student student)
         {
             if (ModelState.IsValid)
             {
                 _unitOfWork.StudentRepository.Add(student);
+                _unitOfWork.Save();
                 return View("Index");
             }
             else
@@ -74,6 +77,114 @@ namespace Assignment2_ASP_NET.Controllers
             }
         }
 
-        //Resten af create aktionerne
+        // GET: /Create/Teacher
+        public IActionResult Teacher()
+        {
+            var teacher = new Teacher();
+
+            return View(teacher);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Teacher(Teacher teacher)
+        {
+            if (ModelState.IsValid)
+            {
+                _unitOfWork.TeacherRepository.Add(teacher);
+                _unitOfWork.Save();
+                return View("Index");
+            }
+            else
+            {
+                return View();
+            }
+        }
+
+        // GET: /Create/Exercise
+        public IActionResult Exercise()
+        {
+            var exercise = new Exercise();
+
+            /* Populate ViewBags */
+
+            // CourseId's
+            var courses = _unitOfWork.CourseRepository.GetAll();
+            List<string> courseIdList = new List<string>();
+
+            foreach (var course in courses)
+            {
+                courseIdList.Add(course.CourseId);
+            }
+
+            ViewBag.CourseId = new SelectList(courseIdList);
+
+            // TeacherId's
+            var teachers = _unitOfWork.TeacherRepository.GetAll();
+            List<string> teacherIdList = new List<string>();
+
+            foreach (var teacher in teachers)
+            {
+                teacherIdList.Add(teacher.AuId);
+            }
+
+            ViewBag.TeacherId = new SelectList(courseIdList);
+
+            // StudentId's
+            var students = _unitOfWork.StudentRepository.GetAll();
+            List<string> studentIdList = new List<string>();
+
+            foreach (var student in students)
+            {
+                teacherIdList.Add(student.AuId);
+            }
+
+            ViewBag.StudentId = new SelectList(courseIdList);
+
+
+            return View(exercise);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Exercise(Exercise exercise)
+        {
+            if (ModelState.IsValid)
+            {
+                _unitOfWork.ExerciseRepository.Add(exercise);
+                _unitOfWork.Save();
+                return View("Index");
+            }
+            else
+            {
+                return View();
+            }
+        }
+
+        // GET: /Create/Assignment
+        public IActionResult Assignment()
+        {
+            var assignment = new Assignment();
+
+            return View(assignment);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Assignment(Assignment assignment)
+        {
+            if (ModelState.IsValid)
+            {
+                _unitOfWork.AssignmentRepository.Add(assignment);
+                _unitOfWork.Save();
+                return View("Index");
+            }
+            else
+            {
+                return View();
+            }
+        }
+
+
     }
 }
