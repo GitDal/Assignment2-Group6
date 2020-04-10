@@ -36,14 +36,14 @@
 
             <h5>Courses:</h5>
             <div class="Choice">
-                @foreach (var course in Model.Courses)
+                @for (int i = 0; i < Model.Courses.Count; i++)
                 {
                     <div>
-                        <input type="hidden" asp-for="@course.CourseTag" />
+                        <input type="hidden" asp-for="Courses[i].CourseTag" />
                     </div>
                     <div>
-                        <input class="ChoiceInner" type="checkbox" asp-for="@course.IsAttending" />
-                        <label class="ChoiceInner" asp-for="@course.IsAttending">@course.CourseTag</label>
+                        <input class="ChoiceInner" type="checkbox" asp-for="Courses[i].IsAttending" />
+                        <label class="ChoiceInner" asp-for="Courses[i].IsAttending">@Model.Courses[i].CourseTag</label>
                     </div>
                 }
             </div>
