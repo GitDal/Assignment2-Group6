@@ -62,19 +62,7 @@ namespace Assignment2_ASP_NET.Controllers
             var student = new Student();
             var courses = _unitOfWork.CourseRepository.GetAll();
 
-            var studentViewModel = new StudentViewModel();
-
-            studentViewModel.Student = student;
-
-            foreach (var course in courses)
-            {
-                studentViewModel.Courses.Add(new CourseSignUp()
-                {
-                    CourseTag = course.CourseId,
-                    IsSignedUp = false
-                });
-            }
-
+            var studentViewModel = new StudentViewModel(student, courses);
 
             return View(studentViewModel);
         }
