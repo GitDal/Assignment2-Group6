@@ -34,6 +34,8 @@ namespace Assignment2_ASP_NET.Models
 
             TeacherIdList = new SelectList(teacherIdList);
 
+            Students = new List<StudentCollaborators>();
+
             // StudentId's
             foreach (var student in students)
             {
@@ -41,7 +43,6 @@ namespace Assignment2_ASP_NET.Models
                 {
                     StudentId = student.AuId,
                     IsCollaborator = false
-                        
                 });
             }
         }
