@@ -13,6 +13,20 @@ namespace Assignment2_ASP_NET.Models
             Courses = new List<CourseSignUp>();
         }
 
+        public StudentViewModel(Student student, IEnumerable<Course> courses)
+        {
+            Student = student;
+            Courses = new List<CourseSignUp>();
+            foreach (var course in courses)
+            {
+                Courses.Add(new CourseSignUp()
+                {
+                    CourseTag = course.CourseId,
+                    IsSignedUp = false
+                });
+            }
+        }
+
         public Student Student { get; set; }
         public string Semester { get; set; }
         public List<CourseSignUp> Courses { get; set; }
