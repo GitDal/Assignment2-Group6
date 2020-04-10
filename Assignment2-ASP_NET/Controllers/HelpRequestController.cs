@@ -50,7 +50,7 @@ namespace Assignment2_ASP_NET.Controllers
                 
                 foreach(var studentAssignment in studentAssignments)
                 {
-                    assignments.Add(_unitOfWork.AssignmentRepository.Get(studentAssignment.AssignmentName));
+                    assignments.Add(_unitOfWork.AssignmentRepository.Get(studentAssignment.HelpRequestId));
                 }
 
                 vm.Assignments = assignments;

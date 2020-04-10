@@ -37,12 +37,14 @@ namespace Assignment2_ASP_NET.Database.Data
             /**************/
             //  Exercise  //
             /**************/
-            modelBuilder.Entity<Exercise>().HasKey(p => new {p.Lecture, p.Number});
+            modelBuilder.Entity<Exercise>().HasKey(p => p.HelpRequestId);
+            //modelBuilder.Entity<Exercise>().Property(p => p.HelpRequestId).ValueGeneratedOnAdd();
 
             /****************/
             //  Assignment  //
             /****************/
-            modelBuilder.Entity<Assignment>().HasKey(p => p.Name);
+            modelBuilder.Entity<Assignment>().HasKey(p => p.HelpRequestId);
+            //modelBuilder.Entity<Assignment>().Property(p => p.HelpRequestId).ValueGeneratedOnAdd();
 
             /**************/
             //  Teachers  //
@@ -99,7 +101,7 @@ namespace Assignment2_ASP_NET.Database.Data
             /************************/
             //  StudentAssignments  //
             /************************/
-            modelBuilder.Entity<StudentAssignment>().HasKey(p => new {p.StudentId, p.AssignmentName});
+            modelBuilder.Entity<StudentAssignment>().HasKey(p => new {p.StudentId, p.HelpRequestId});
             modelBuilder.Entity<StudentAssignment>()
                 .HasOne<Student>()
                 .WithMany(a => a.Assignments)
@@ -107,7 +109,7 @@ namespace Assignment2_ASP_NET.Database.Data
             modelBuilder.Entity<StudentAssignment>()
                 .HasOne<Assignment>()
                 .WithMany(s => s.Students)
-                .HasForeignKey(f => f.AssignmentName);
+                .HasForeignKey(f => f.HelpRequestId);
         }
     }
 }

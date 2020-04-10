@@ -88,16 +88,19 @@ namespace Assignment2_ASP_NET.Database.Migrations
                 name: "Assignment",
                 columns: table => new
                 {
+                    HelpRequestId = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(nullable: false),
-                    HelpWhere = table.Column<string>(nullable: true),
+                    HelpWhere = table.Column<string>(nullable: false),
                     CourseId = table.Column<string>(nullable: true),
                     TeacherId = table.Column<string>(nullable: true),
+                    Open = table.Column<bool>(nullable: false),
                     CourseId1 = table.Column<string>(nullable: true),
                     TeacherAuId = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Assignment", x => x.Name);
+                    table.PrimaryKey("PK_Assignment", x => x.HelpRequestId);
                     table.ForeignKey(
                         name: "FK_Assignment_Course_CourseId",
                         column: x => x.CourseId,
@@ -128,9 +131,12 @@ namespace Assignment2_ASP_NET.Database.Migrations
                 name: "Exercise",
                 columns: table => new
                 {
+                    HelpRequestId = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     Number = table.Column<int>(nullable: false),
                     Lecture = table.Column<string>(nullable: false),
-                    HelpWhere = table.Column<string>(nullable: true),
+                    HelpWhere = table.Column<string>(nullable: false),
+                    Open = table.Column<bool>(nullable: false),
                     CourseId = table.Column<string>(nullable: true),
                     TeacherId = table.Column<string>(nullable: true),
                     StudentId = table.Column<string>(nullable: true),
@@ -140,7 +146,7 @@ namespace Assignment2_ASP_NET.Database.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Exercise", x => new { x.Lecture, x.Number });
+                    table.PrimaryKey("PK_Exercise", x => x.HelpRequestId);
                     table.ForeignKey(
                         name: "FK_Exercise_Course_CourseId",
                         column: x => x.CourseId,
@@ -222,25 +228,25 @@ namespace Assignment2_ASP_NET.Database.Migrations
                 columns: table => new
                 {
                     StudentId = table.Column<string>(nullable: false),
-                    AssignmentName = table.Column<string>(nullable: false),
+                    HelpRequestId = table.Column<int>(nullable: false),
                     StudentAuId = table.Column<string>(nullable: true),
-                    AssignmentName1 = table.Column<string>(nullable: true)
+                    AssignmentHelpRequestId = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_StudentAssignment", x => new { x.StudentId, x.AssignmentName });
+                    table.PrimaryKey("PK_StudentAssignment", x => new { x.StudentId, x.HelpRequestId });
                     table.ForeignKey(
-                        name: "FK_StudentAssignment_Assignment_AssignmentName",
-                        column: x => x.AssignmentName,
+                        name: "FK_StudentAssignment_Assignment_AssignmentHelpRequestId",
+                        column: x => x.AssignmentHelpRequestId,
                         principalTable: "Assignment",
-                        principalColumn: "Name",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_StudentAssignment_Assignment_AssignmentName1",
-                        column: x => x.AssignmentName1,
-                        principalTable: "Assignment",
-                        principalColumn: "Name",
+                        principalColumn: "HelpRequestId",
                         onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_StudentAssignment_Assignment_HelpRequestId",
+                        column: x => x.HelpRequestId,
+                        principalTable: "Assignment",
+                        principalColumn: "HelpRequestId",
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_StudentAssignment_Student_StudentAuId",
                         column: x => x.StudentAuId,
@@ -306,14 +312,14 @@ namespace Assignment2_ASP_NET.Database.Migrations
                 column: "TeacherId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_StudentAssignment_AssignmentName",
+                name: "IX_StudentAssignment_AssignmentHelpRequestId",
                 table: "StudentAssignment",
-                column: "AssignmentName");
+                column: "AssignmentHelpRequestId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_StudentAssignment_AssignmentName1",
+                name: "IX_StudentAssignment_HelpRequestId",
                 table: "StudentAssignment",
-                column: "AssignmentName1");
+                column: "HelpRequestId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_StudentAssignment_StudentAuId",

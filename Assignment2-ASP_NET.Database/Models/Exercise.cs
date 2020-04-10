@@ -1,17 +1,26 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 
 namespace Assignment2_ASP_NET.Database.Models
 {
     public class Exercise
     {
-        
+        [Required]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int HelpRequestId { get; set; }
+        [Required]
         public int Number { get; set; }
+        [Required]
         public string Lecture { get; set; }
+        [Required]
+        [Display(Name = "Help Where")]
         public string HelpWhere { get; set; }
+        public bool Open { get; set; }
 
+        [Display(Name = "Course Tag")]
         public string CourseId { get; set; }
         public string TeacherId { get; set; }
         public string StudentId { get; set; }

@@ -155,6 +155,7 @@ namespace Assignment2_ASP_NET.Controllers
         {
             if (ModelState.IsValid)
             {
+                exercise.Open = true;
                 _unitOfWork.ExerciseRepository.Add(exercise);
                 _unitOfWork.Save();
                 return View("Index");
@@ -183,7 +184,10 @@ namespace Assignment2_ASP_NET.Controllers
         {
             if (ModelState.IsValid)
             {
+                vm.Assignment.Open = true;
                 _unitOfWork.AssignmentRepository.Add(vm.Assignment);
+                _unitOfWork.Save();     // This save gives the Assignment its primary key value
+                                        // needed for the mapping of the shadow table between students and assignment
 
                 foreach (var student in vm.Students)
                 {
@@ -192,7 +196,7 @@ namespace Assignment2_ASP_NET.Controllers
                         _unitOfWork.StudentAssignmentRepository.Add(new StudentAssignment()
                         {
                             StudentId = student.StudentId,
-                            AssignmentName = vm.Assignment.Name
+                            HelpRequestId = vm.Assignment.HelpRequestId
                         });
                     }
                 }
