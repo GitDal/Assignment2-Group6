@@ -1,0 +1,13 @@
+﻿@model CourseHelpRequestStatisticsViewModel
+
+@{
+    ViewData["Title"] = "Statistics";
+}
+
+<h2>Statistics - @Model.Course.Name</h2>
+<p>Help Requests Statistics for the Course: @(Model.Course.Name + (Model.Course.CourseId))</p>
+
+<p><span>Exercise Help Requests (Amount)</span><strong>@Model.AmountExercise</strong></p>
+<p><span>Assignment Help Requests (Amount)</span><strong>@Model.AmountAssignment</strong></p>
+
+

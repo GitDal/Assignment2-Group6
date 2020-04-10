@@ -13,6 +13,8 @@ namespace Assignment2_ASP_NET.Database.Repository
         IGenericRepository<Assignment> AssignmentRepository { get; }
         IGenericRepository<Exercise> ExerciseRepository { get; }
         IGenericRepository<StudentCourse> StudentCourseRepository { get; }
+        IGenericRepository<StudentAssignment> StudentAssignmentRepository { get; }
+        IGenericRepository<TeacherCourse> TeacherCourseRepository { get; }
 
 
         void Save();

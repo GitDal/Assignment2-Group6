@@ -138,45 +138,13 @@ namespace Assignment2_ASP_NET.Controllers
         // GET: /Create/Exercise
         public IActionResult Exercise()
         {
-            var exercise = new Exercise();
-
-            /* Populate ViewBags */
-
-            // CourseId's
             var courses = _unitOfWork.CourseRepository.GetAll();
-            List<string> courseIdList = new List<string>();
-
-            foreach (var course in courses)
-            {
-                courseIdList.Add(course.CourseId);
-            }
-
-            ViewBag.CourseId = new SelectList(courseIdList);
-
-            // TeacherId's
             var teachers = _unitOfWork.TeacherRepository.GetAll();
-            List<string> teacherIdList = new List<string>();
-
-            foreach (var teacher in teachers)
-            {
-                teacherIdList.Add(teacher.AuId);
-            }
-
-            ViewBag.TeacherId = new SelectList(courseIdList);
-
-            // StudentId's
             var students = _unitOfWork.StudentRepository.GetAll();
-            List<string> studentIdList = new List<string>();
 
-            foreach (var student in students)
-            {
-                teacherIdList.Add(student.AuId);
-            }
+            var vm = new ExerciseViewModel(courses, teachers, students);
 
-            ViewBag.StudentId = new SelectList(courseIdList);
-
-
-            return View(exercise);
+            return View(vm);
         }
 
         [HttpPost]
@@ -198,18 +166,35 @@ namespace Assignment2_ASP_NET.Controllers
         // GET: /Create/Assignment
         public IActionResult Assignment()
         {
-            var assignment = new Assignment();
+            var courses = _unitOfWork.CourseRepository.GetAll();
+            var teachers = _unitOfWork.TeacherRepository.GetAll();
+            var students = _unitOfWork.StudentRepository.GetAll();
 
-            return View(assignment);
+            var vm = new AssignmentViewModel(courses, teachers, students); //Populating Lists in ViewModel
+
+            return View(vm);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Assignment(Assignment assignment)
+        public IActionResult Assignment(AssignmentViewModel vm)
         {
             if (ModelState.IsValid)
             {
-                _unitOfWork.AssignmentRepository.Add(assignment);
+                _unitOfWork.AssignmentRepository.Add(vm.Assignment);
+
+                foreach (var student in vm.Students)
+                {
+                    if (student.IsCollaborator) //If checkBox is checked we make new relationship (in shadow-table)
+                    {
+                        _unitOfWork.StudentAssignmentRepository.Add(new StudentAssignment()
+                        {
+                            StudentId = student.StudentId,
+                            AssignmentName = vm.Assignment.Name
+                        });
+                    }
+                }
+
                 _unitOfWork.Save();
                 return View("Index");
             }
@@ -218,7 +203,5 @@ namespace Assignment2_ASP_NET.Controllers
                 return View();
             }
         }
-
-
     }
 }

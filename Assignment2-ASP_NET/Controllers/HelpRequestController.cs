@@ -72,7 +72,17 @@ namespace Assignment2_ASP_NET.Controllers
 
             if (course != null)
             {
-                return View();
+                var vm = new CourseHelpRequestStatisticsViewModel();
+
+                vm.Course = course;
+
+                var exercises = _unitOfWork.ExerciseRepository.Find(e => e.CourseId == courseId);
+                var assignments = _unitOfWork.AssignmentRepository.Find(a => a.CourseId == courseId);
+
+                vm.AmountExercise = exercises.Count();
+                vm.AmountAssignment = assignments.Count();
+
+                return View(vm);
             }
 
             return View("Index");
