@@ -78,7 +78,7 @@ namespace Assignment2_ASP_NET.Controllers
                 _unitOfWork.StudentRepository.Add(studentViewModel.Student);
                 foreach (var c in studentViewModel.Courses)
                 {
-                    if (c.IsSignedUp)
+                    if (c.IsAttending)
                     {
                         _unitOfWork.StudentCourseRepository.Add(new StudentCourse()
                         {
@@ -103,17 +103,31 @@ namespace Assignment2_ASP_NET.Controllers
         public IActionResult Teacher()
         {
             var teacher = new Teacher();
+            var courses = _unitOfWork.CourseRepository.GetAll();
 
-            return View(teacher);
+            var teacherViewModel = new TeacherViewModel(teacher, courses);
+
+            return View(teacherViewModel);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Teacher(Teacher teacher)
+        public IActionResult Teacher(TeacherViewModel teacherViewModel)
         {
             if (ModelState.IsValid)
             {
-                _unitOfWork.TeacherRepository.Add(teacher);
+                _unitOfWork.TeacherRepository.Add(teacherViewModel.Teacher);
+                foreach (var c in teacherViewModel.Courses)
+                {
+                    if (c.IsResponsible)
+                    {
+                        _unitOfWork.TeacherCourseRepository.Add(new TeacherCourse()
+                        {
+                            CourseId = c.CourseTag,
+                            TeacherId = teacherViewModel.Teacher.AuId
+                        });
+                    }
+                }
                 _unitOfWork.Save();
                 return View("Index");
             }

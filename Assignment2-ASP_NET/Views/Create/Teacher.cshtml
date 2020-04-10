@@ -1,4 +1,4 @@
-﻿@model Assignment2_ASP_NET.Database.Models.Teacher
+﻿@model TeacherViewModel
 
 @{
     ViewData["Title"] = "Teacher";
@@ -13,20 +13,35 @@
         <form asp-action="Teacher" method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="AuId" class="control-label"></label>
-                <input asp-for="AuId" class="form-control" />
-                <span asp-validation-for="AuId" class="text-danger"></span>
+                <label asp-for="Teacher.AuId" class="control-label"></label>
+                <input asp-for="Teacher.AuId" class="form-control" />
+                <span asp-validation-for="Teacher.AuId" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Firstname" class="control-label"></label>
-                <input asp-for="Firstname" class="form-control" />
-                <span asp-validation-for="Firstname" class="text-danger"></span>
+                <label asp-for="Teacher.Firstname" class="control-label"></label>
+                <input asp-for="Teacher.Firstname" class="form-control" />
+                <span asp-validation-for="Teacher.Firstname" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Lastname" class="control-label"></label>
-                <input asp-for="Lastname" class="form-control" />
-                <span asp-validation-for="Lastname" class="text-danger"></span>
+                <label asp-for="Teacher.Lastname" class="control-label"></label>
+                <input asp-for="Teacher.Lastname" class="form-control" />
+                <span asp-validation-for="Teacher.Lastname" class="text-danger"></span>
             </div>
+
+            <h5>Courses:</h5>
+            <div class="Choice">
+                @foreach (var course in Model.Courses)
+                {
+                    <div>
+                        <input type="hidden" asp-for="@course.CourseTag" />
+                    </div>
+                    <div>
+                        <input class="ChoiceInner" type="checkbox" asp-for="@course.IsResponsible" />
+                        <label class="ChoiceInner" asp-for="@course.IsResponsible">@course.CourseTag</label>
+                    </div>
+                }
+            </div>
+
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
             </div>
