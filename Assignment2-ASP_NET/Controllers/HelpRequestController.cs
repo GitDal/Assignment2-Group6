@@ -21,7 +21,13 @@ namespace Assignment2_ASP_NET.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            var courses = _unitOfWork.CourseRepository.GetAll();
+            var teachers = _unitOfWork.TeacherRepository.GetAll();
+            var students = _unitOfWork.StudentRepository.GetAll();
+
+            var vm = new BrowseViewModel(courses, teachers, students);
+
+            return View(vm);
         }
 
         public IActionResult GetForStudent(string studentAuId)

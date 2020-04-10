@@ -1,4 +1,5 @@
-﻿
+﻿@model BrowseViewModel
+
 @{
     ViewData["Title"] = "Help Requests - Views";
 }
@@ -7,48 +8,43 @@
 <h5>Choose the desired view...</h5>
 
 <div>
-    <br/>
+    <br />
     <h6><b>Help Requests - Student</b></h6>
     <form asp-action="GetForStudent" method="get">
-        <table>
-            <tr>
-                <td>Enter Au-Id: </td>
-                <td><input type="text" name="studentAuId" /></td>
-            </tr>
-            <tr>
-                <td colspan="2"><input type="submit" value="Submit" /></td>
-            </tr>
-        </table>
+        <div class="form-group">
+            <label class="control-label">Au-Id:</label>
+            <select name="studentAuId" class="form-control col-md-6" asp-items="Model.StudentIdList"></select>
+        </div>
+        <div class="form-group">
+            <input type="submit" value="Search" class="btn btn-primary" />
+        </div>
     </form>
+
     <br />
     <h6><b>Help Requests - Teacher, Course</b></h6>
     <form asp-action="GetForTeacherCourse" method="get">
-        <table>
-            <tr>
-                <td>Enter Au-Id: </td>
-                <td><input type="text" name="teacherAuId" /></td>
-            </tr>
-            <tr>
-                <td>Enter Course-Id: </td>
-                <td><input type="text" name="courseId" /></td>
-            </tr>
-            <tr>
-                <td colspan="2"><input type="submit" value="Submit" /></td>
-            </tr>
-        </table>
+        <div class="form-group">
+            <label class="control-label">Au-Id:</label>
+            <select name="teacherAuId" class="form-control col-md-6" asp-items="Model.TeacherIdList"></select>
+        </div>
+        <div class="form-group">
+            <label class="control-label">Course-Tag:</label>
+            <select name="courseId" class="form-control col-md-6" asp-items="Model.CourseIdList"></select>
+        </div>
+        <div class="form-group">
+            <input type="submit" value="Search" class="btn btn-primary" />
+        </div>
     </form>
     <br />
     <h6><b>Help Request Statistics - Course</b></h6>
     <form asp-action="Statistics" method="get">
-        <table>
-            <tr>
-                <td>Enter Course-Id: </td>
-                <td><input type="text" name="courseId" /></td>
-            </tr>
-            <tr>
-                <td colspan="2"><input type="submit" value="Submit" /></td>
-            </tr>
-        </table>
+        <div class="form-group">
+            <label class="control-label">Course-tag:</label>
+            <select name="courseId" class="form-control col-md-6" asp-items="Model.CourseIdList"></select>
+        </div>
+        <div class="form-group">
+            <input type="submit" value="Search" class="btn btn-primary" />
+        </div>
     </form>
 </div>
 
