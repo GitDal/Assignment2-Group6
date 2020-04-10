@@ -1,13 +1,32 @@
-﻿@model CourseHelpRequestStatisticsViewModel
+﻿@model HelpRequestStatisticsViewModel
 
 @{
     ViewData["Title"] = "Statistics";
 }
 
-<h2>Statistics - @Model.Course.Name</h2>
-<p><i>Help Requests Statistics for the Course: @(Model.Course.Name) (@Model.Course.CourseId)</i></p>
+<h2>Statistics</h2>
+<p><i>Help Requests Statistics for all Courses in the database</i></p>
 
-<p><span>Exercise Help Requests (Amount):   </span><strong>@Model.AmountExercise</strong></p>
-<p><span>Assignment Help Requests (Amount): </span><strong>@Model.AmountAssignment</strong></p>
+@foreach (var helpRequestStatistic in Model.CourseStatisticsList)
+{
+    <br/>
+    <h6>@helpRequestStatistic.Course.Name</h6>
+    <table class="table table-bordered box-shadow col-md-8">
+        <thead>
+            <tr>
+                <td>@Html.DisplayNameFor(m => m.CourseStatisticsList.GetEnumerator().Current.ExerciseAmount)</td>
+                <td>@Html.DisplayNameFor(m => m.CourseStatisticsList.GetEnumerator().Current.AssignmentAmount)</td>
+                <td>@Html.DisplayNameFor(m => m.CourseStatisticsList.GetEnumerator().Current.OpenAmount)</td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>@helpRequestStatistic.ExerciseAmount</td>
+                <td>@helpRequestStatistic.AssignmentAmount</td>
+                <td>@helpRequestStatistic.OpenAmount</td>
+            </tr>
+        </tbody>
+    </table>
+}
 
 

@@ -36,12 +36,8 @@
         </div>
     </form>
     <br />
-    <h6><b>Help Request Statistics - Course</b></h6>
+    <h6><b>Help Request Statistics - All Courses</b></h6>
     <form asp-action="Statistics" method="get">
-        <div class="form-group">
-            <label class="control-label">Course-tag:</label>
-            <select name="courseId" class="form-control col-md-6" asp-items="Model.CourseIdList"></select>
-        </div>
         <div class="form-group">
             <input type="submit" value="Search" class="btn btn-primary" />
         </div>
