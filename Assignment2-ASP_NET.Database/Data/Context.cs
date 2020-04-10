@@ -38,13 +38,13 @@ namespace Assignment2_ASP_NET.Database.Data
             //  Exercise  //
             /**************/
             modelBuilder.Entity<Exercise>().HasKey(p => p.HelpRequestId);
-            modelBuilder.Entity<Exercise>().Property(p => p.HelpRequestId).ValueGeneratedOnAdd();
+            //modelBuilder.Entity<Exercise>().Property(p => p.HelpRequestId).ValueGeneratedOnAdd();
 
             /****************/
             //  Assignment  //
             /****************/
             modelBuilder.Entity<Assignment>().HasKey(p => p.HelpRequestId);
-            modelBuilder.Entity<Assignment>().Property(p => p.HelpRequestId).ValueGeneratedOnAdd();
+            //modelBuilder.Entity<Assignment>().Property(p => p.HelpRequestId).ValueGeneratedOnAdd();
 
             /**************/
             //  Teachers  //

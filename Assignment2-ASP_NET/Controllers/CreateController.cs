@@ -186,6 +186,8 @@ namespace Assignment2_ASP_NET.Controllers
             {
                 vm.Assignment.Open = true;
                 _unitOfWork.AssignmentRepository.Add(vm.Assignment);
+                _unitOfWork.Save();     // This save gives the Assignment its primary key value
+                                        // needed for the mapping of the shadow table between students and assignment
 
                 foreach (var student in vm.Students)
                 {

@@ -36,6 +36,25 @@ namespace Assignment2_ASP_NET.Controllers
 
         public IActionResult SeedDatabase()
         {
+            //Deleting everything in database before populating the database
+            _unitOfWork.StudentAssignmentRepository.DeleteRange(_unitOfWork.StudentAssignmentRepository.GetAll());
+            _unitOfWork.Save();
+            _unitOfWork.AssignmentRepository.DeleteRange(_unitOfWork.AssignmentRepository.GetAll());
+            _unitOfWork.Save();
+            _unitOfWork.ExerciseRepository.DeleteRange(_unitOfWork.ExerciseRepository.GetAll());
+            _unitOfWork.Save();
+            _unitOfWork.StudentCourseRepository.DeleteRange(_unitOfWork.StudentCourseRepository.GetAll());
+            _unitOfWork.Save();
+            _unitOfWork.StudentRepository.DeleteRange(_unitOfWork.StudentRepository.GetAll());
+            _unitOfWork.Save();
+            _unitOfWork.TeacherCourseRepository.DeleteRange(_unitOfWork.TeacherCourseRepository.GetAll());
+            _unitOfWork.Save();
+            _unitOfWork.TeacherRepository.DeleteRange(_unitOfWork.TeacherRepository.GetAll());
+            _unitOfWork.Save();
+            _unitOfWork.CourseRepository.DeleteRange(_unitOfWork.CourseRepository.GetAll());
+            _unitOfWork.Save();
+            /***************************************************************/
+
             IEnumerable<Course> courses = new List<Course>()
             {
                 new Course(){CourseId = "GUI", Name = "GUI programming"},
@@ -178,11 +197,10 @@ namespace Assignment2_ASP_NET.Controllers
                 new StudentCourse(){StudentId = "au100012", Semester = "F20", Active = true, CourseId = "DOA"},
                 new StudentCourse(){StudentId = "au100012", Semester = "F20", Active = true, CourseId = "GFV"},
                 new StudentCourse(){StudentId = "au100012", Semester = "F20", Active = true, CourseId = "DSB"},
-                new StudentCourse(){StudentId = "au100013", Semester = "F20", Active = true, CourseId = "ISU"},
-                new StudentCourse(){StudentId = "au100013", Semester = "F20", Active = true, CourseId = "HAL"},
-                new StudentCourse(){StudentId = "au100013", Semester = "F20", Active = true, CourseId = "DOA"},
+                new StudentCourse(){StudentId = "au100013", Semester = "F20", Active = true, CourseId = "SWD"},
+                new StudentCourse(){StudentId = "au100013", Semester = "F20", Active = true, CourseId = "SWT"},
+                new StudentCourse(){StudentId = "au100013", Semester = "F20", Active = true, CourseId = "NGK"},
                 new StudentCourse(){StudentId = "au100013", Semester = "F20", Active = true, CourseId = "GFV"},
-                new StudentCourse(){StudentId = "au100013", Semester = "F20", Active = true, CourseId = "DSB"},
                 new StudentCourse(){StudentId = "au100014", Semester = "F20", Active = true, CourseId = "SWD"},
                 new StudentCourse(){StudentId = "au100014", Semester = "F20", Active = true, CourseId = "SWT"},
                 new StudentCourse(){StudentId = "au100014", Semester = "F20", Active = true, CourseId = "NGK"},
@@ -191,10 +209,6 @@ namespace Assignment2_ASP_NET.Controllers
                 new StudentCourse(){StudentId = "au100015", Semester = "F20", Active = true, CourseId = "SWT"},
                 new StudentCourse(){StudentId = "au100015", Semester = "F20", Active = true, CourseId = "NGK"},
                 new StudentCourse(){StudentId = "au100015", Semester = "F20", Active = true, CourseId = "GFV"},
-                new StudentCourse(){StudentId = "au100016", Semester = "F20", Active = true, CourseId = "SWD"},
-                new StudentCourse(){StudentId = "au100016", Semester = "F20", Active = true, CourseId = "SWT"},
-                new StudentCourse(){StudentId = "au100016", Semester = "F20", Active = true, CourseId = "NGK"},
-                new StudentCourse(){StudentId = "au100016", Semester = "F20", Active = true, CourseId = "GFV"},
             };
 
             IEnumerable<Exercise> exercises = new List<Exercise>()
@@ -233,30 +247,26 @@ namespace Assignment2_ASP_NET.Controllers
 
             IEnumerable<Assignment> assignments = new List<Assignment>()
             {
-                new Assignment(){HelpRequestId = 1, Name = "Obligatorisk Opgave II", TeacherId = "au000002", CourseId = "SWT", HelpWhere = "Benjamin"},
-                new Assignment(){HelpRequestId = 2, Name = "Obligatorisk Opgave II", TeacherId = "au000006", CourseId = "SWT", HelpWhere = "Zoom"},
-                new Assignment(){HelpRequestId = 3, Name = "Assignment #2", TeacherId = "au000005", CourseId = "NGK", HelpWhere = "Shannon"},
-                new Assignment(){HelpRequestId = 4, Name = "Assignment #3", TeacherId = "au000004", CourseId = "NGK", HelpWhere = "Zoom"},
-                new Assignment(){HelpRequestId = 5, Name = "Assignment 1", TeacherId = "au000001", CourseId = "DAB", HelpWhere = "Edison"},
-                new Assignment(){HelpRequestId = 6, Name = "Assignment 2", TeacherId = "au000001", CourseId = "DAB", HelpWhere = "Zoom"},
-                new Assignment(){HelpRequestId = 7, Name = "Obligatorisk Opgave 2", TeacherId = "au000004", CourseId = "GUI", HelpWhere = "Nyggard"},
-                new Assignment(){HelpRequestId = 8, Name = "Obligatorisk Handin", TeacherId = "au000001", CourseId = "SWD", HelpWhere = "Shannon"},
-                new Assignment(){HelpRequestId = 9, Name = "Mutex", TeacherId = "au000014", CourseId = "ISU", HelpWhere = "Benjamin"},
-                new Assignment(){HelpRequestId = 10, Name = "RAII", TeacherId = "au000014", CourseId = "ISU", HelpWhere = "Benjamin"},
-                new Assignment(){HelpRequestId = 11, Name = "SPI", TeacherId = "au000008", CourseId = "HAL", HelpWhere = "Benjamin"},
-                new Assignment(){HelpRequestId = 12, Name = "Assignment 4", TeacherId = "au000010", CourseId = "DSB", HelpWhere = "Benjamin"},
-                new Assignment(){HelpRequestId = 13, Name = "Lab Experiment 2", TeacherId = "au000011", CourseId = "GFV", HelpWhere = "Shannon"},
-                new Assignment(){HelpRequestId = 14, Name = "Lab Experiment 3", TeacherId = "au000007", CourseId = "GFV", HelpWhere = "Shannon"},
-                new Assignment(){HelpRequestId = 15, Name = "Obligatorisk Handin", TeacherId = "au000008", CourseId = "DOA", HelpWhere = "Kahn"},
+                new Assignment(){Name = "Obligatorisk Opgave II", TeacherId = "au000002", CourseId = "SWT", HelpWhere = "Benjamin"},
+                new Assignment(){Name = "Obligatorisk Opgave II", TeacherId = "au000006", CourseId = "SWT", HelpWhere = "Zoom"},
+                new Assignment(){Name = "Assignment #2", TeacherId = "au000005", CourseId = "NGK", HelpWhere = "Shannon"},
+                new Assignment(){Name = "Assignment #3", TeacherId = "au000004", CourseId = "NGK", HelpWhere = "Zoom"},
+                new Assignment(){Name = "Assignment 1", TeacherId = "au000001", CourseId = "DAB", HelpWhere = "Edison"},
+                new Assignment(){Name = "Assignment 2", TeacherId = "au000001", CourseId = "DAB", HelpWhere = "Zoom"},
+                new Assignment(){Name = "Obligatorisk Opgave 2", TeacherId = "au000004", CourseId = "GUI", HelpWhere = "Nyggard"},
+                new Assignment(){Name = "Obligatorisk Handin", TeacherId = "au000001", CourseId = "SWD", HelpWhere = "Shannon"},
+                new Assignment(){Name = "Mutex", TeacherId = "au000014", CourseId = "ISU", HelpWhere = "Benjamin"},
+                new Assignment(){Name = "RAII", TeacherId = "au000014", CourseId = "ISU", HelpWhere = "Benjamin"},
+                new Assignment(){Name = "SPI", TeacherId = "au000008", CourseId = "HAL", HelpWhere = "Benjamin"},
+                new Assignment(){Name = "Assignment 4", TeacherId = "au000010", CourseId = "DSB", HelpWhere = "Benjamin"},
+                new Assignment(){Name = "Lab Experiment 2", TeacherId = "au000011", CourseId = "GFV", HelpWhere = "Shannon"},
+                new Assignment(){Name = "Lab Experiment 3", TeacherId = "au000007", CourseId = "GFV", HelpWhere = "Shannon"},
+                new Assignment(){Name = "Obligatorisk Handin", TeacherId = "au000008", CourseId = "DOA", HelpWhere = "Kahn"},
             };
-            
+
+            /*
             IEnumerable<StudentAssignment> studentAssignments = new List<StudentAssignment>()
             {
-                new StudentAssignment(){HelpRequestId = 8, StudentId = "au100001"},
-                new StudentAssignment(){HelpRequestId = 8, StudentId = "au100002"},
-                new StudentAssignment(){HelpRequestId = 8, StudentId = "au100006"},
-                new StudentAssignment(){HelpRequestId = 9, StudentId = "au100010"},
-                new StudentAssignment(){HelpRequestId = 9, StudentId = "au100011"},
                 new StudentAssignment(){HelpRequestId = 1, StudentId = "au100005"},
                 new StudentAssignment(){HelpRequestId = 1, StudentId = "au100004"},
                 new StudentAssignment(){HelpRequestId = 2, StudentId = "au100001"},
@@ -267,13 +277,18 @@ namespace Assignment2_ASP_NET.Controllers
                 new StudentAssignment(){HelpRequestId = 3, StudentId = "au100013"},
                 new StudentAssignment(){HelpRequestId = 4, StudentId = "au100004"},
                 new StudentAssignment(){HelpRequestId = 4, StudentId = "au100005"},
-                new StudentAssignment(){HelpRequestId = 6, StudentId = "au100001"},
-                new StudentAssignment(){HelpRequestId = 6, StudentId = "au100002"},
                 new StudentAssignment(){HelpRequestId = 5, StudentId = "au100006"},
                 new StudentAssignment(){HelpRequestId = 5, StudentId = "au100005"},
+                new StudentAssignment(){HelpRequestId = 6, StudentId = "au100001"},
+                new StudentAssignment(){HelpRequestId = 6, StudentId = "au100002"},
                 new StudentAssignment(){HelpRequestId = 7, StudentId = "au100003"},
                 new StudentAssignment(){HelpRequestId = 7, StudentId = "au100004"},
                 new StudentAssignment(){HelpRequestId = 7, StudentId = "au100001"},
+                new StudentAssignment(){HelpRequestId = 8, StudentId = "au100001"},
+                new StudentAssignment(){HelpRequestId = 8, StudentId = "au100002"},
+                new StudentAssignment(){HelpRequestId = 8, StudentId = "au100006"},
+                new StudentAssignment(){HelpRequestId = 9, StudentId = "au100010"},
+                new StudentAssignment(){HelpRequestId = 9, StudentId = "au100011"},
                 new StudentAssignment(){HelpRequestId = 10, StudentId = "au100007"},
                 new StudentAssignment(){HelpRequestId = 10, StudentId = "au100008"},
                 new StudentAssignment(){HelpRequestId = 11, StudentId = "au100009"},
@@ -285,24 +300,73 @@ namespace Assignment2_ASP_NET.Controllers
                 new StudentAssignment(){HelpRequestId = 14, StudentId = "au100011"},
                 new StudentAssignment(){HelpRequestId = 14, StudentId = "au100012"},
                 new StudentAssignment(){HelpRequestId = 15, StudentId = "au100008"},
-                new StudentAssignment(){HelpRequestId = 15, StudentId = "au100009"},
+                new StudentAssignment(){HelpRequestId = 15, StudentId = "au100009"}
+            };
+            */
+
+            var assignmentSeedList = assignments.ToList();
+
+            IEnumerable<StudentAssignment> studentAssignments = new List<StudentAssignment>()
+            {
+                new StudentAssignment(){HelpRequestId = 1, StudentId = "au100005"},
+                new StudentAssignment(){HelpRequestId = 1, StudentId = "au100004"},
+                new StudentAssignment(){HelpRequestId = 2, StudentId = "au100001"},
+                new StudentAssignment(){HelpRequestId = 2, StudentId = "au100002"},
+                new StudentAssignment(){HelpRequestId = 2, StudentId = "au100006"},
+                new StudentAssignment(){HelpRequestId = 3, StudentId = "au100015"},
+                new StudentAssignment(){HelpRequestId = 3, StudentId = "au100014"},
+                new StudentAssignment(){HelpRequestId = 3, StudentId = "au100013"},
+                new StudentAssignment(){HelpRequestId = 4, StudentId = "au100004"},
+                new StudentAssignment(){HelpRequestId = 4, StudentId = "au100005"},
+                new StudentAssignment(){HelpRequestId = 5, StudentId = "au100006"},
+                new StudentAssignment(){HelpRequestId = 5, StudentId = "au100005"},
+                new StudentAssignment(){HelpRequestId = 6, StudentId = "au100001"},
+                new StudentAssignment(){HelpRequestId = 6, StudentId = "au100002"},
+                new StudentAssignment(){HelpRequestId = 7, StudentId = "au100003"},
+                new StudentAssignment(){HelpRequestId = 7, StudentId = "au100004"},
+                new StudentAssignment(){HelpRequestId = 7, StudentId = "au100001"},
+                new StudentAssignment(){HelpRequestId = 8, StudentId = "au100001"},
+                new StudentAssignment(){HelpRequestId = 8, StudentId = "au100002"},
+                new StudentAssignment(){HelpRequestId = 8, StudentId = "au100006"},
+                new StudentAssignment(){HelpRequestId = 9, StudentId = "au100010"},
+                new StudentAssignment(){HelpRequestId = 9, StudentId = "au100011"},
+                new StudentAssignment(){HelpRequestId = 10, StudentId = "au100007"},
+                new StudentAssignment(){HelpRequestId = 10, StudentId = "au100008"},
+                new StudentAssignment(){HelpRequestId = 11, StudentId = "au100009"},
+                new StudentAssignment(){HelpRequestId = 12, StudentId = "au100010"},
+                new StudentAssignment(){HelpRequestId = 13, StudentId = "au100013"},
+                new StudentAssignment(){HelpRequestId = 13, StudentId = "au100014"},
+                new StudentAssignment(){HelpRequestId = 13, StudentId = "au100015"},
+                new StudentAssignment(){HelpRequestId = 14, StudentId = "au100010"},
+                new StudentAssignment(){HelpRequestId = 14, StudentId = "au100011"},
+                new StudentAssignment(){HelpRequestId = 14, StudentId = "au100012"},
+                new StudentAssignment(){HelpRequestId = 15, StudentId = "au100008"},
+                new StudentAssignment(){HelpRequestId = 15, StudentId = "au100009"}
             };
 
-
-
-
-
             _unitOfWork.CourseRepository.AddRange(courses);
-            _unitOfWork.TeacherRepository.AddRange(teachers);
-            _unitOfWork.TeacherCourseRepository.AddRange(teacherCourses);
-            _unitOfWork.StudentRepository.AddRange(students);
-            _unitOfWork.StudentCourseRepository.AddRange(studentCourses);
-            _unitOfWork.ExerciseRepository.AddRange(exercises);
-            _unitOfWork.AssignmentRepository.AddRange(assignments);
-            _unitOfWork.StudentAssignmentRepository.AddRange(studentAssignments);
-
             _unitOfWork.Save();
 
+            _unitOfWork.TeacherRepository.AddRange(teachers);
+            _unitOfWork.Save();
+
+            _unitOfWork.TeacherCourseRepository.AddRange(teacherCourses);
+            _unitOfWork.Save();
+
+            _unitOfWork.StudentRepository.AddRange(students);
+            _unitOfWork.Save();
+
+            _unitOfWork.StudentCourseRepository.AddRange(studentCourses);
+            _unitOfWork.Save();
+
+            _unitOfWork.ExerciseRepository.AddRange(exercises);
+            _unitOfWork.Save();
+
+            _unitOfWork.AssignmentRepository.AddRange(assignments);
+            _unitOfWork.Save();
+
+            _unitOfWork.StudentAssignmentRepository.AddRange(studentAssignments);
+            _unitOfWork.Save();
 
             return View("Index");
         }
