@@ -81,21 +81,29 @@ namespace Assignment2_ASP_NET.Controllers
             return View("Index"); // Error
         }
 
-        public IActionResult Statistics(string courseId)
+        public IActionResult Statistics()
         {
-            var course = _unitOfWork.CourseRepository.Get(courseId);
+            var courses = _unitOfWork.CourseRepository.GetAll();
 
-            if (course != null)
+            if (courses != null)
             {
-                var vm = new CourseHelpRequestStatisticsViewModel();
+                var vm = new HelpRequestStatisticsViewModel();
 
-                vm.Course = course;
+                foreach (var course in courses)
+                {
+                    // Get all Help Requests (Exercises and Assignment) for specific course
+                    var exercises = _unitOfWork.ExerciseRepository.Find(e => e.CourseId == course.CourseId);
+                    var assignments = _unitOfWork.AssignmentRepository.Find(a => a.CourseId == course.CourseId);
 
-                var exercises = _unitOfWork.ExerciseRepository.Find(e => e.CourseId == courseId);
-                var assignments = _unitOfWork.AssignmentRepository.Find(a => a.CourseId == courseId);
+                    vm.CourseStatisticsList.Add(new HelpRequestCourseStatistics()
+                    {
+                        Course = course,
+                        ExerciseAmount = exercises.Count(),
+                        AssignmentAmount = assignments.Count(),
+                        OpenAmount = (exercises.Count(e => e.Open) + assignments.Count(e => e.Open))
 
-                vm.AmountExercise = exercises.Count();
-                vm.AmountAssignment = assignments.Count();
+                    });
+                }
 
                 return View(vm);
             }
