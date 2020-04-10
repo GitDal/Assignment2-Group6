@@ -9,7 +9,10 @@ namespace Assignment2_ASP_NET.Models
 {
     public class HelpRequestStatisticsViewModel
     {
-        public HelpRequestStatisticsViewModel() { }
+        public HelpRequestStatisticsViewModel()
+        {
+            CourseStatisticsList = new List<HelpRequestCourseStatistics>();
+        }
 
         public List<HelpRequestCourseStatistics> CourseStatisticsList { get; set; }
     }

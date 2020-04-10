@@ -10,8 +10,8 @@
 @foreach (var helpRequestStatistic in Model.CourseStatisticsList)
 {
     <br/>
-    <h6>@helpRequestStatistic.Course.Name</h6>
-    <table class="table table-bordered box-shadow col-md-8">
+    <h6><b>@(helpRequestStatistic.Course.Name + " (" + helpRequestStatistic.Course.CourseId + ")")</b></h6>
+    <table class="table table-bordered box-shadow col-md-8 table-striped">
         <thead>
             <tr>
                 <td>@Html.DisplayNameFor(m => m.CourseStatisticsList.GetEnumerator().Current.ExerciseAmount)</td>
