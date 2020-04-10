@@ -1,2 +1,22 @@
 ﻿@model TeacherCourseHelpRequestViewModel
 
+<h2>@Model.Course.Name</h2>
+<p>Help Requests for @( Model.Teacher.Firstname + " " + Model.Teacher.Lastname)</p>
+
+<h3>Assignment Help Requests</h3>
+<table>
+    <thead>
+    <tr>
+        <td>Assignment Name</td>
+        <td></td>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var assignment in Model.Assignments)
+    {
+        <tr>
+            <td>@assignment.Name</td>
+        </tr>
+    }
+    </tbody>
+</table>
