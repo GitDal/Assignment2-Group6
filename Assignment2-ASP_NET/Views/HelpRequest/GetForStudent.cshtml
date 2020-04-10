@@ -11,17 +11,27 @@
 
 @* Student Info *@
 <br />
-<h6>Student:</h6>
-<ul>
-    <li><span>@Html.DisplayName(nameof(student.AuId))</span><strong>@student.AuId</strong></li>
-    <li><span>@Html.DisplayName(nameof(student.Firstname))</span><strong>@student.Firstname</strong></li>
-    <li><span>@Html.DisplayName(nameof(student.Lastname))</span><strong>@student.Lastname</strong></li>
-</ul>
+<table>
+    <tbody>
+        <tr>
+            <td><strong>@Html.DisplayName(nameof(student.AuId)):</strong></td>
+            <td>&nbsp;@student.AuId</td>
+        </tr>
+        <tr>
+            <td><strong>@Html.DisplayName(nameof(student.Firstname)):</strong></td>
+            <td>&nbsp;@student.Firstname</td>
+    </tr>
+    <tr>
+        <td><strong>@Html.DisplayName(nameof(student.Lastname)):</strong></td>
+        <td>&nbsp;@student.Lastname</td>
+    </tr>
+    </tbody>
+</table>
 
 @* Exercises *@
 <br />
-<h6>Exercise-Help-Requests</h6>
-<table class="table">
+<h4><b>Exercise-Help-Requests</b></h4>
+<table class="table table-bordered box-shadow">
     <thead>
         <tr>
             <th>@Html.DisplayNameFor(m => m.Exercises.GetEnumerator().Current.Number)</th>
@@ -57,7 +67,7 @@
 
 @* Assignments *@
 <br />
-<h6>Assignment-Help-Requests</h6>
+<h4><b>Assignment-Help-Requests</b></h4>
 <table class="table">
     <thead>
         <tr>
