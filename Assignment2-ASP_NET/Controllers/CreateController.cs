@@ -155,6 +155,7 @@ namespace Assignment2_ASP_NET.Controllers
         {
             if (ModelState.IsValid)
             {
+                exercise.Open = true;
                 _unitOfWork.ExerciseRepository.Add(exercise);
                 _unitOfWork.Save();
                 return View("Index");
@@ -183,6 +184,7 @@ namespace Assignment2_ASP_NET.Controllers
         {
             if (ModelState.IsValid)
             {
+                vm.Assignment.Open = true;
                 _unitOfWork.AssignmentRepository.Add(vm.Assignment);
 
                 foreach (var student in vm.Students)
@@ -192,7 +194,7 @@ namespace Assignment2_ASP_NET.Controllers
                         _unitOfWork.StudentAssignmentRepository.Add(new StudentAssignment()
                         {
                             StudentId = student.StudentId,
-                            AssignmentName = vm.Assignment.Name
+                            HelpRequestId = vm.Assignment.HelpRequestId
                         });
                     }
                 }
