@@ -30,16 +30,19 @@
                 <label asp-for="Assignment.TeacherId" class="control-label"></label>
                 <select asp-for="Assignment.TeacherId" class="form-control" asp-items="Model.TeacherIdList"></select>
             </div>
-            @foreach (var student in Model.Students)
-            {
-                <div class="form-group">
-                    <input class="form-control" type="hidden" asp-for="@student.StudentId" />
-                </div>
-                <div class="form-group">
-                    <label class="form-control" asp-for="@student.IsCollaborator">@student.StudentId</label>
-                    <input class="form-control" type="checkbox" asp-for="@student.IsCollaborator" />
-                </div>
-            }
+            <h5>Students:</h5>
+            <div class="Choice">
+                @foreach (var student in Model.Students)
+                {
+                    <div>
+                        <input type="hidden" asp-for="@student.StudentId"/>
+                    </div>
+                    <div>
+                        <input class="ChoiceInner" type="checkbox" asp-for="@student.IsCollaborator" />
+                        <label class="ChoiceInner" asp-for="@student.IsCollaborator">@student.StudentId</label>
+                    </div>
+                }
+            </div>
 
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
